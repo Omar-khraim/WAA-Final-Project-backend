@@ -18,8 +18,8 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
 
-    String City;
-    String State;
-    String Street;
-    int ZipCode;
+    String city;
+    String state;
+    String street;
+    int zipCode;
 }
