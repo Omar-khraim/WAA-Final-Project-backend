@@ -23,6 +23,7 @@ public class Property {
     int bathroomNum;
     int status;
     int areaInSquareFeet;
+    double price;
 
     @ManyToOne
     @JsonBackReference

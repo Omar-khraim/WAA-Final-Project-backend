@@ -15,13 +15,11 @@ import java.util.List;
 public class PropertyDto {
 
     private long id;
-    private int roomNum;
-    private int bathroomNum;
     private int status;
-    private int areaInSquareFeet;
+    String details;
+    String address;
+    double price;
 
-    private Users owner;
-    private Address address;
     private List<PropertyPhotos> photos;
 
 

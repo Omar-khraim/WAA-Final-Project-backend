@@ -8,10 +8,11 @@ import com.example.waa_final_project.Util.Helper.ListMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class PropertyServiceImpl  implements PropertyService {
+public class PropertyServiceImpl implements PropertyService {
 
     private final PropertyRepo propertyRepo;
 
@@ -33,8 +34,19 @@ public class PropertyServiceImpl  implements PropertyService {
 
     @Override
     public List<PropertyDto> findAll() {
-        return (List<PropertyDto>)
-                listMapperToDto.mapList(propertyRepo.findAll(), new PropertyDto());
+        var props = propertyRepo.findAll();
+        List<PropertyDto> propertyDtos = new ArrayList<>();
+        props.forEach(p -> {
+            PropertyDto dto = new PropertyDto();
+            dto.setAddress(p.getAddress().getStreet() + ", " + p.getAddress().getCity() + ", " + p.getAddress().getState() + " " + p.getAddress().getZipCode());
+            dto.setDetails(p.getRoomNum() + " bed " + p.getBathroomNum() + " bath " + p.getAreaInSquareFeet() + " sqft");
+            dto.setStatus(p.getStatus());
+            dto.setId(p.getId());
+            dto.setPhotos(p.getPhotos());
+            dto.setPrice(p.getPrice());
+            propertyDtos.add(dto);
+        });
+        return propertyDtos;
     }
 
     @Override
