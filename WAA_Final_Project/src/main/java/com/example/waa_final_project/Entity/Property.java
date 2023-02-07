@@ -33,6 +33,7 @@ public class Property {
     Address address;
 
     @OneToMany(mappedBy = "property")
+    @JsonBackReference
     List<PropertyPhotos> photos;
 
 
