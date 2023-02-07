@@ -1,11 +1,11 @@
 package com.example.waa_final_project.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -19,5 +19,8 @@ public class Users {
     private String email;
     private String username;
     private String password;
+    @OneToOne
     private Role role;
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
+    private List<Property>  properties;
 }

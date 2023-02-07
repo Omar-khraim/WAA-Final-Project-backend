@@ -30,4 +30,6 @@ public class Property {
     @OneToMany(mappedBy = "property")
     List<PropertyPhotos> photos;
 
+
+
 }
