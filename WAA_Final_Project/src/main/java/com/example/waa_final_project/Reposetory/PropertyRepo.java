@@ -9,8 +9,11 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface PropertyRepo  extends JpaRepository<Property, Long> {
+public interface PropertyRepo extends JpaRepository<Property, Long> {
 
     @Override
     List<Property> findAll();
+
+    Property findAllById(long id);
+
 }

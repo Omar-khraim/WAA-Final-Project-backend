@@ -29,7 +29,19 @@ public class PropertyServiceImpl implements PropertyService {
 
     @Override
     public PropertyDto findById(long id) {
-        return modelMapper.map(propertyRepo.findById(id), PropertyDto.class);
+        var p = propertyRepo.findAllById(id);
+        return CreateDto(p);
+    }
+
+    public PropertyDto CreateDto(Property p) {
+        PropertyDto dto = new PropertyDto();
+        dto.setAddress(p.getAddress().getStreet() + ", " + p.getAddress().getCity() + ", " + p.getAddress().getState() + " " + p.getAddress().getZipCode());
+        dto.setDetails(p.getRoomNum() + " bed " + p.getBathroomNum() + " bath " + p.getAreaInSquareFeet() + " sqft");
+        dto.setStatus(p.getStatus());
+        dto.setId(p.getId());
+        dto.setPhotos(p.getPhotos());
+        dto.setPrice(p.getPrice());
+        return dto;
     }
 
     @Override
@@ -37,14 +49,7 @@ public class PropertyServiceImpl implements PropertyService {
         var props = propertyRepo.findAll();
         List<PropertyDto> propertyDtos = new ArrayList<>();
         props.forEach(p -> {
-            PropertyDto dto = new PropertyDto();
-            dto.setAddress(p.getAddress().getStreet() + ", " + p.getAddress().getCity() + ", " + p.getAddress().getState() + " " + p.getAddress().getZipCode());
-            dto.setDetails(p.getRoomNum() + " bed " + p.getBathroomNum() + " bath " + p.getAreaInSquareFeet() + " sqft");
-            dto.setStatus(p.getStatus());
-            dto.setId(p.getId());
-            dto.setPhotos(p.getPhotos());
-            dto.setPrice(p.getPrice());
-            propertyDtos.add(dto);
+            propertyDtos.add(CreateDto(p));
         });
         return propertyDtos;
     }
