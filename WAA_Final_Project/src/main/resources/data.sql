@@ -7,9 +7,9 @@ values ('Owner');
 
 
 insert into users (email, name, password, username, role_id)
-values ('oaskhraim@gmail.com' , 'Omar Khraim' , '5555', 'okh13', 1);
+values ('oaskhraim@gmail.com' , 'Omar Khraim' , '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2', 'okh13', 1);
 insert into users (email, name, password, username, role_id)
-values ('mkiwan@yahoo.com' , 'Moh Kiwan' , '5555', 'okh13', 2);
+values ('mkiwan@yahoo.com' , 'Moh Kiwan' , '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2', 'okh13', 2);
 
 
 insert into public.address ( city, state, street, zip_code)
