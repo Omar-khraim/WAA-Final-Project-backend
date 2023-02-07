@@ -23,6 +23,9 @@ public class Property {
     int status;
     int areaInSquareFeet;
 
+    @ManyToOne
+    Users owner ;
+
     @OneToOne
     @JoinColumn(name = "address_id")
     Address address;
