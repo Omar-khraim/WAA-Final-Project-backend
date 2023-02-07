@@ -1,4 +1,4 @@
-package com.example.waa_final_project.Util;
+package com.example.waa_final_project.Util.Enum;
 
 public enum PropertyStatus {
     Available(1),

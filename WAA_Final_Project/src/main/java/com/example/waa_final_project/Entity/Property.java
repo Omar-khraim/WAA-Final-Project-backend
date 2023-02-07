@@ -1,6 +1,7 @@
 package com.example.waa_final_project.Entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,7 +25,8 @@ public class Property {
     int areaInSquareFeet;
 
     @ManyToOne
-    Users owner ;
+    @JsonBackReference
+    Users owner;
 
     @OneToOne
     @JoinColumn(name = "address_id")
@@ -32,7 +34,6 @@ public class Property {
 
     @OneToMany(mappedBy = "property")
     List<PropertyPhotos> photos;
-
 
 
 }

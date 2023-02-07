@@ -1,8 +1,8 @@
-package com.example.waa_final_project.service.Impl;
+package com.example.waa_final_project.Service.Impl;
 
 import com.example.waa_final_project.Entity.Role;
 import com.example.waa_final_project.Reposetory.RoleRepo;
-import com.example.waa_final_project.service.RoleService;
+import com.example.waa_final_project.Service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

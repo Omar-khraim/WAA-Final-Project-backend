@@ -1,15 +1,15 @@
-package com.example.waa_final_project.controller;
+package com.example.waa_final_project.Controller;
 
 import com.example.waa_final_project.Dto.UsersDto;
 import com.example.waa_final_project.Entity.Users;
-import com.example.waa_final_project.service.UsersService;
+import com.example.waa_final_project.Service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("api/v1/users")
 public class UserController {
     @Autowired
     UsersService    usersService;

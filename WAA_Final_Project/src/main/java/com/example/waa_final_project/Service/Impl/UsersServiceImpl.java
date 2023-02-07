@@ -1,9 +1,9 @@
-package com.example.waa_final_project.service.Impl;
+package com.example.waa_final_project.Service.Impl;
 
 import com.example.waa_final_project.Dto.UsersDto;
 import com.example.waa_final_project.Entity.Users;
 import com.example.waa_final_project.Reposetory.UsersRepo;
-import com.example.waa_final_project.service.UsersService;
+import com.example.waa_final_project.Service.UsersService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

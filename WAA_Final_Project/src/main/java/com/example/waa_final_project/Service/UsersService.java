@@ -1,4 +1,4 @@
-package com.example.waa_final_project.service;
+package com.example.waa_final_project.Service;
 
 import com.example.waa_final_project.Dto.UsersDto;
 import com.example.waa_final_project.Entity.Users;

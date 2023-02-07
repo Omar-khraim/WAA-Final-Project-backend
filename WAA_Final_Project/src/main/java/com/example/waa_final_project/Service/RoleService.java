@@ -1,7 +1,6 @@
-package com.example.waa_final_project.service;
+package com.example.waa_final_project.Service;
 
 import com.example.waa_final_project.Entity.Role;
-import com.example.waa_final_project.Entity.Users;
 
 import java.util.List;
 
