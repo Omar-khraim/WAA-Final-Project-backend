@@ -1,19 +1,26 @@
 package com.example.waa_final_project.Service.Impl;
 
 import com.example.waa_final_project.Dto.PropertyDto;
+import com.example.waa_final_project.Entity.Address;
 import com.example.waa_final_project.Entity.Property;
 import com.example.waa_final_project.Reposetory.PropertyRepo;
 import com.example.waa_final_project.Service.PropertyService;
 import com.example.waa_final_project.Util.Helper.ListMapper;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.criteria.*;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
 public class PropertyServiceImpl implements PropertyService {
 
+    @Autowired
+    EntityManager   entityManager;
     private final PropertyRepo propertyRepo;
 
     private final ModelMapper modelMapper;
@@ -67,5 +74,30 @@ public class PropertyServiceImpl implements PropertyService {
     @Override
     public void update(PropertyDto propertyDto) {
         propertyRepo.save(modelMapper.map(propertyDto, Property.class));
+    }
+
+    @Override
+    public List<PropertyDto> filter(Integer numOfRooms, Integer numberOfBathrooms, String zip, String city, Double price) {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Property> cq = cb.createQuery(Property.class);
+        Root<Property> root = cq.from(Property.class);
+        Join<Property, Address> addressJoin = root.join("address");
+
+        List<Predicate> searchCriteria = new ArrayList<>();
+
+        if(numOfRooms != null)
+            searchCriteria.add(cb.equal(root.get("roomNum"), numOfRooms.intValue()));
+        if (numberOfBathrooms != null)
+            searchCriteria.add(cb.equal(root.get("bathroomNum"), numberOfBathrooms.intValue()));
+        if (zip != null)
+            searchCriteria.add(cb.equal(addressJoin.get("zip"), zip));
+        if (city != null)
+            searchCriteria.add(cb.equal(addressJoin.get("city"), city));
+        if (price != null)
+            searchCriteria.add(cb.equal(root.get("price"), price));
+        cq.select(root).where(cb.and(searchCriteria.toArray(new Predicate[searchCriteria.size()])));
+
+        return Arrays.asList( modelMapper.map( entityManager.createQuery(cq).getResultList() , PropertyDto[].class));
+
     }
 }

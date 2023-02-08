@@ -37,4 +37,13 @@ public class PropertyController {
     public void editProperty(@RequestBody PropertyDto property){
         propertyService.update(property);
     }
+
+    @GetMapping("/filter")
+    public List<PropertyDto> filter(@RequestParam(value = "rooms", required = false) Integer rooms,
+                                    @RequestParam(value = "bathrooms", required = false) Integer bathrooms,
+                                    @RequestParam(value = "zip", required = false) String zip,
+                                    @RequestParam(value = "city", required = false) String city,
+                                    @RequestParam(value = "price", required = false) Double price){
+        return propertyService.filter(rooms, bathrooms, zip, city, price);
+    }
 }

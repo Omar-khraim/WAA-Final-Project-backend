@@ -1,6 +1,7 @@
 package com.example.waa_final_project.Controller;
 
 import com.example.waa_final_project.Dto.UsersDto;
+import com.example.waa_final_project.Entity.Offer;
 import com.example.waa_final_project.Entity.Users;
 import com.example.waa_final_project.Service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import java.util.List;
 @RequestMapping("api/v1/users")
 public class UserController {
     @Autowired
-    UsersService    usersService;
+    UsersService usersService;
 
     @GetMapping
     public List<UsersDto> getAllUsers(){
@@ -38,6 +39,9 @@ public class UserController {
     public void deleteUser(@PathVariable long id){
         usersService.deleteUser(id);
     }
+
+
+
 
 
 }

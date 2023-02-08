@@ -9,16 +9,15 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 public class Property {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
-
     int roomNum;
     int bathroomNum;
     int status;
@@ -36,6 +35,10 @@ public class Property {
     @OneToMany(mappedBy = "property")
     @JsonBackReference
     List<PropertyPhotos> photos;
+
+
+    @OneToMany(mappedBy = "property")
+    List<Offer> offers;
 
 
 }

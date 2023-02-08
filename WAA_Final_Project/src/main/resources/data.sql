@@ -16,5 +16,12 @@ insert into public.address ( city, state, street, zip_code)
 values ('Fairfield', 'Iowa', '4th street', 52557);
 
 
+
 insert into property ( area_in_square_feet, bathroom_num, room_num, status,price, address_id, owner_id)
 values (950, 2, 3, 1,35000, 1, 2);
+insert into property ( area_in_square_feet, bathroom_num, room_num, status, price, address_id, owner_id)
+values (950, 2, 3, 1,100000, 1, 2);
+
+
+insert into offer (offer_description, status, agent_email, customer_id, property_id)
+values (' Iam interested in apartment 1', 'pending','aboukham.abdelaziz@gmail.com', 2, 1);

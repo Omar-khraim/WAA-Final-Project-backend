@@ -17,4 +17,5 @@ public interface PropertyService {
     void addProperty(PropertyDto property);
 
     void update(PropertyDto property);
+    List<PropertyDto> filter(Integer numOfRooms, Integer numberOfBathrooms, String zip, String city, Double price);
 }

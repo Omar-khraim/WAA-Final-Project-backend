@@ -1,7 +1,9 @@
 package com.example.waa_final_project.Service.Impl;
 
 import com.example.waa_final_project.Dto.UsersDto;
+import com.example.waa_final_project.Entity.Offer;
 import com.example.waa_final_project.Entity.Users;
+import com.example.waa_final_project.Reposetory.OfferRepo;
 import com.example.waa_final_project.Reposetory.UsersRepo;
 import com.example.waa_final_project.Service.UsersService;
 import org.modelmapper.ModelMapper;
@@ -13,6 +15,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class UsersServiceImpl  implements UsersService {
+    @Autowired
+    OfferRepo   offerRepo;
     @Autowired
     UsersRepo   usersRepo;
     @Autowired
@@ -45,4 +49,5 @@ public class UsersServiceImpl  implements UsersService {
     public void deleteUser(long id) {
         usersRepo.deleteById(id);
     }
+
 }
