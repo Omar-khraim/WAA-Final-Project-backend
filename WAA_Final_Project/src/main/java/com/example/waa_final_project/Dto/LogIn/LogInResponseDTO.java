@@ -10,4 +10,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class LogInResponseDTO {
     private String accessToken ;
+    private String refreshToken;
 }
