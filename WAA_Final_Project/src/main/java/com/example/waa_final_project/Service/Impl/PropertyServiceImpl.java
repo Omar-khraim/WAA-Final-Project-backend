@@ -20,7 +20,7 @@ import java.util.List;
 public class PropertyServiceImpl implements PropertyService {
 
     @Autowired
-    EntityManager   entityManager;
+    EntityManager entityManager;
     private final PropertyRepo propertyRepo;
 
     private final ModelMapper modelMapper;
@@ -85,7 +85,7 @@ public class PropertyServiceImpl implements PropertyService {
 
         List<Predicate> searchCriteria = new ArrayList<>();
 
-        if(numOfRooms != null)
+        if (numOfRooms != null)
             searchCriteria.add(cb.equal(root.get("roomNum"), numOfRooms.intValue()));
         if (numberOfBathrooms != null)
             searchCriteria.add(cb.equal(root.get("bathroomNum"), numberOfBathrooms.intValue()));
@@ -97,7 +97,7 @@ public class PropertyServiceImpl implements PropertyService {
             searchCriteria.add(cb.equal(root.get("price"), price));
         cq.select(root).where(cb.and(searchCriteria.toArray(new Predicate[searchCriteria.size()])));
 
-        return Arrays.asList( modelMapper.map( entityManager.createQuery(cq).getResultList() , PropertyDto[].class));
+        return Arrays.asList(modelMapper.map(entityManager.createQuery(cq).getResultList(), PropertyDto[].class));
 
     }
 }

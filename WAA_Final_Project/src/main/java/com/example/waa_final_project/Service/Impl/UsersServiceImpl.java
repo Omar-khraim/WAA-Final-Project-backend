@@ -50,4 +50,9 @@ public class UsersServiceImpl  implements UsersService {
         usersRepo.deleteById(id);
     }
 
+    @Override
+    public Users findAllByEmail(String email) {
+        return usersRepo.findAllByEmail(email);
+    }
+
 }

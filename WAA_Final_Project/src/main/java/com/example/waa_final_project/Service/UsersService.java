@@ -12,6 +12,7 @@ public interface UsersService {
     public void addUser(Users user);
     public void update(long id, Users users);
     public void deleteUser(long id);
+    Users findAllByEmail(String email);
 
 
 }
