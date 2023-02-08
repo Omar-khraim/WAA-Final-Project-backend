@@ -89,15 +89,19 @@ public class PropertyServiceImpl implements PropertyService {
             searchCriteria.add(cb.equal(root.get("roomNum"), numOfRooms.intValue()));
         if (numberOfBathrooms != null)
             searchCriteria.add(cb.equal(root.get("bathroomNum"), numberOfBathrooms.intValue()));
-        if (zip != null)
+        if (zip != null && !zip.isEmpty())
             searchCriteria.add(cb.equal(addressJoin.get("zip"), zip));
-        if (city != null)
+        if (city != null && !city.isEmpty())
             searchCriteria.add(cb.equal(addressJoin.get("city"), city));
         if (price != null)
             searchCriteria.add(cb.equal(root.get("price"), price));
         cq.select(root).where(cb.and(searchCriteria.toArray(new Predicate[searchCriteria.size()])));
 
-        return Arrays.asList(modelMapper.map(entityManager.createQuery(cq).getResultList(), PropertyDto[].class));
-
+        var props = entityManager.createQuery(cq).getResultList();
+        List<PropertyDto> propertyDtos = new ArrayList<>();
+        props.forEach(p -> {
+            propertyDtos.add(CreateDto(p));
+        });
+        return propertyDtos;
     }
 }
