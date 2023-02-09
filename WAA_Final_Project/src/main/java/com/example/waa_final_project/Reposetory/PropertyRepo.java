@@ -21,4 +21,5 @@ public interface PropertyRepo extends JpaRepository<Property, Long> {
     List<Property> findAllByOwner_Id(long id);
 
 
+
 }

@@ -25,11 +25,11 @@ public class Offer {
     double offerAmount;
     double creditScore;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     //    @JoinColumn(name = "customer_id")
     @JsonManagedReference
     Users user;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
 //    @JoinColumn(name = "property_id")
     @JsonManagedReference
     Property property;

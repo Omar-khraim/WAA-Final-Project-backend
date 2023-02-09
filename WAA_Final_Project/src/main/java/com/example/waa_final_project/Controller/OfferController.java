@@ -26,14 +26,20 @@ public class OfferController {
 
     @PutMapping("/{id}/approve")
     public String updateStatusApproved(@PathVariable("id") long id) {
-        offerService.updateOfferStatus(id, "Approved");
+        offerService.updateAcceptedOfferStatus(id, "Approved");
         return "offer accepted";
     }
 
     @PutMapping("/{id}/reject")
     public String updateStatusRejected(@PathVariable("id") long id) {
-        offerService.updateOfferStatus(id, "Rejected");
+        offerService.updateRejectedOfferStatus(id, "Rejected");
         return "offer rejected";
+    }
+
+    @PutMapping("/{id}/contingent")
+    public String updateContingentOfferStatus(@PathVariable("id") long id) {
+        offerService.updateContingentOfferStatus(id, "Contingent");
+        return "offer Contingent";
     }
 
     @DeleteMapping("/{id}")

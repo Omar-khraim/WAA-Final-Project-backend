@@ -39,12 +39,41 @@ public class OfferServiceImpl implements OfferService {
     }
 
     @Override
-    public void updateOfferStatus(long id, String status) {
+    public void updateAcceptedOfferStatus(long id, String status) {
         Offer offer = offerRepo.findById(id).orElse(null);
         if (offer != null) {
             offer.setStatus(OfferStatus.valueOf(status).getValue());
-            propertyService.updatePropertyStatus(offer.getProperty().getId(), OfferStatus.valueOf(status).getValue() == 1 ? 2 : 1);
+            var prop = propertyRepo.findAllById(offer.getProperty().getId());
+            if (prop.getStatus() == 1 || prop.getStatus() == 2)
+                propertyService.updatePropertyStatus(offer.getProperty().getId(), 2);
             offerRepo.save(offer);
+        }
+    }
+
+    @Override
+    public void updateRejectedOfferStatus(long id, String status) {
+        Offer offer = offerRepo.findById(id).orElse(null);
+        if (offer != null) {
+            offer.setStatus(OfferStatus.valueOf(status).getValue());
+            offerRepo.save(offer);
+        }
+    }
+
+    @Override
+    public void updateContingentOfferStatus(long id, String status) {
+        Offer offer = offerRepo.findById(id).orElse(null);
+        if (offer != null) {
+            var prop = propertyRepo.findAllById(offer.getProperty().getId());
+            if (prop.getStatus() == 2) {
+                var otherOffers = offerRepo.findOffersByIdIsNot(id);
+                otherOffers.forEach(o -> {
+                    o.setStatus(2);
+                    offerRepo.save(o);
+                });
+                offer.setStatus(OfferStatus.valueOf(status).getValue());
+                propertyService.updatePropertyStatus(offer.getProperty().getId(), 3);
+                offerRepo.save(offer);
+            }
         }
     }
 
@@ -61,7 +90,25 @@ public class OfferServiceImpl implements OfferService {
 
     @Override
     public void deleteOffer(long id) {
-        offerRepo.deleteById(id);
+        Offer offer = offerRepo.findById(id).orElse(null);
+        if (offer != null) {
+            var prop = propertyRepo.findAllById(offer.getProperty().getId());
+            if (prop.getStatus() == 1) {
+                offerRepo.deleteById(id);
+            } else if (prop.getStatus() == 2) {
+                var approvedOffers = offerRepo.findOffersByStatus(1);
+                if (approvedOffers.size() == 1) {
+                    if (approvedOffers.get(0).getId() == id) {
+                        propertyService.updatePropertyStatus(offer.getProperty().getId(), 1);
+                        offerRepo.deleteById(id);
+                    } else if (approvedOffers.size() > 1) {
+                        offerRepo.deleteById(id);
+                    }
+                } else {
+                    offerRepo.deleteById(id);
+                }
+            }
+        }
     }
 
     @Override
