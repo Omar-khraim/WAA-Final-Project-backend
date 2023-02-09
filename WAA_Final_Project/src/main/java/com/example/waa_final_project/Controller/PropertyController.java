@@ -2,6 +2,7 @@ package com.example.waa_final_project.Controller;
 
 
 import com.example.waa_final_project.Dto.PropertyDto;
+import com.example.waa_final_project.Entity.Property;
 import com.example.waa_final_project.Service.PropertyService;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,5 +46,10 @@ public class PropertyController {
                                     @RequestParam(value = "city", required = false) String city,
                                     @RequestParam(value = "price", required = false) Double price){
         return propertyService.filter(rooms, bathrooms, zip, city, price);
+    }
+
+    @GetMapping("/likes/{userId}")
+    public List<Property> findUserLikedPropertyId(@PathVariable long userId){
+        return propertyService.findUserLikedProperties(userId);
     }
 }

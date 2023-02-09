@@ -104,4 +104,9 @@ public class PropertyServiceImpl implements PropertyService {
         });
         return propertyDtos;
     }
+
+    @Override
+    public List<Property> findUserLikedProperties(long userId) {
+        return propertyRepo.findAllByLikes_Users_Id(userId);
+    }
 }

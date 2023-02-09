@@ -1,5 +1,6 @@
 package com.example.waa_final_project.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,9 +19,11 @@ public class Offer {
     String agentEmail;
     @OneToOne
     @JoinColumn(name = "customer_id")
+            @JsonIgnore
     Users   user;
     @ManyToOne
     @JoinColumn(name = "property_id")
+            @JsonIgnore
     Property    property;
 
 }

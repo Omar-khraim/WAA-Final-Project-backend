@@ -1,8 +1,8 @@
 package com.example.waa_final_project.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,11 +11,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "likes")
 public class Like {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
-    @OneToOne
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonBackReference
     Property property;
-    @OneToOne
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonBackReference
     Users users;
 }
