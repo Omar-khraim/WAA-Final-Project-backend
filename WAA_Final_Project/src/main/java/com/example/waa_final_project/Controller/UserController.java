@@ -50,5 +50,14 @@ public class UserController {
         return "sent successfully";
     }
 
+    @GetMapping("{customer_id}/CustomerOffers")
+    public List<Offer> getAllCustomerOffers(@PathVariable long customer_id){
+        return offerService.findAllByUser_Id(customer_id);
+    }
+    @GetMapping("{owner_id}/OwnerOffers")
+    public List<Offer> getOwnerOffers(@PathVariable long owner_id){
+        return offerService.findAllByProperty_Owner_Id(owner_id);
+    }
+
 
 }

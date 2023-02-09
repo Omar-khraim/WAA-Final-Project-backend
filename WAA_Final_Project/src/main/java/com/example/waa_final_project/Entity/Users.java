@@ -25,6 +25,7 @@ public class Users {
     private String email;
     private String username;
     private String password;
+    private String phoneNumber;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JsonManagedReference
@@ -34,10 +35,10 @@ public class Users {
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
     @JsonManagedReference
     @JsonIgnore
-    private List<Property>  properties;
+    private List<Property> properties;
 
     @OneToMany(mappedBy = "users", fetch = FetchType.LAZY)
-            @JsonManagedReference
-            @JsonIgnore
+    @JsonManagedReference
+    @JsonIgnore
     List<Like> likes;
 }

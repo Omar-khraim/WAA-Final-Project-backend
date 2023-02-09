@@ -3,10 +3,13 @@ package com.example.waa_final_project.Service.Impl;
 import com.example.waa_final_project.Entity.Offer;
 import com.example.waa_final_project.Reposetory.OfferRepo;
 import com.example.waa_final_project.Service.OfferService;
+import com.example.waa_final_project.Util.Enum.OfferStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.waa_final_project.Reposetory.PropertyRepo;
 import com.example.waa_final_project.Reposetory.UsersRepo;
+
+import java.util.List;
 
 @Service
 public class OfferServiceImpl implements OfferService {
@@ -36,9 +39,25 @@ public class OfferServiceImpl implements OfferService {
     public void updateOfferStatus(long id, String status) {
         Offer offer = offerRepo.findById(id).orElse(null);
         if (offer != null) {
-            offer.setStatus(status);
+            offer.setStatus(OfferStatus.valueOf(status).getValue());
             offerRepo.save(offer);
         }
     }
+
+    @Override
+    public List<Offer> findAllByUser_Id(long id) {
+        return offerRepo.findAllByUser_Id(id);
+    }
+
+    @Override
+    public List<Offer> findAllByProperty_Owner_Id(long id) {
+        return offerRepo.findAllByProperty_Owner_Id(id);
+
+    }
+    @Override
+    public void deleteOffer(long id) {
+        offerRepo.deleteById(id);
+    }
+
 
 }
