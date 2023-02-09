@@ -9,8 +9,8 @@ import java.util.List;
 public interface UsersService {
     public List<UsersDto>  findAllUsers();
     public UsersDto    findById(long id);
-    public void addUser(Users user);
-    public void update(long id, Users users);
+    public void addUser(UsersDto user);
+    public void update(UsersDto users);
     public void deleteUser(long id);
     Users findAllByEmail(String email);
 

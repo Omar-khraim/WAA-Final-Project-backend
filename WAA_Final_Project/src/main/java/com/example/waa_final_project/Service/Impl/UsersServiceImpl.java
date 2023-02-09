@@ -1,13 +1,11 @@
 package com.example.waa_final_project.Service.Impl;
 
 import com.example.waa_final_project.Dto.UsersDto;
-import com.example.waa_final_project.Entity.Offer;
 import com.example.waa_final_project.Entity.Users;
 import com.example.waa_final_project.Reposetory.OfferRepo;
 import com.example.waa_final_project.Reposetory.UsersRepo;
 import com.example.waa_final_project.Service.UsersService;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,12 +13,18 @@ import java.util.stream.Collectors;
 
 @Service
 public class UsersServiceImpl  implements UsersService {
-    @Autowired
-    OfferRepo   offerRepo;
-    @Autowired
-    UsersRepo   usersRepo;
-    @Autowired
-    ModelMapper mapper;
+
+    private final OfferRepo offerRepo;
+    private final   UsersRepo   usersRepo;
+    private final ModelMapper mapper;
+
+    public UsersServiceImpl(OfferRepo offerRepo, UsersRepo usersRepo, ModelMapper mapper) {
+        this.offerRepo = offerRepo;
+        this.usersRepo = usersRepo;
+        this.mapper = mapper;
+    }
+
+
     @Override
     public List<UsersDto> findAllUsers() {
         return usersRepo.findAll().stream()
@@ -34,15 +38,13 @@ public class UsersServiceImpl  implements UsersService {
     }
 
     @Override
-    public void addUser(Users user) {
-        usersRepo.save(user);
+    public void addUser(UsersDto user) {
+        usersRepo.save(mapper.map(user , Users.class));
     }
 
     @Override
-    public void update(long id, Users user) {
-        deleteUser(id);
-        user.setId(id);
-        addUser(user);
+    public void update(UsersDto user) {
+        usersRepo.save(mapper.map(user , Users.class));
     }
 
     @Override

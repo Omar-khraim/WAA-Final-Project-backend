@@ -1,5 +1,6 @@
 package com.example.waa_final_project.Entity;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -24,20 +25,24 @@ public class Users {
     private String name;
     private String email;
     private String username;
+    @JsonIgnore
     private String password;
+
 
     @OneToOne(fetch = FetchType.LAZY)
     @JsonManagedReference
     @JsonIgnore
     private Role role;
 
+
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
     @JsonManagedReference
     @JsonIgnore
-    private List<Property>  properties;
+    private List<Property> properties;
 
     @OneToMany(mappedBy = "users", fetch = FetchType.LAZY)
-            @JsonManagedReference
-            @JsonIgnore
+    @JsonManagedReference
+    @JsonIgnore
     List<Like> likes;
+
 }
