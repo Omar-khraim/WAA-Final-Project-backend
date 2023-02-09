@@ -21,6 +21,9 @@ public class OfferServiceImpl implements OfferService {
     @Autowired
     PropertyRepo propertyRepo;
 
+    @Autowired
+    PropertyServiceImpl propertyService;
+
     @Override
     public void sendOffer(long prop_id, long user_id, Offer offer) {
         var user = usersRepo.findAllById(user_id);
@@ -40,6 +43,7 @@ public class OfferServiceImpl implements OfferService {
         Offer offer = offerRepo.findById(id).orElse(null);
         if (offer != null) {
             offer.setStatus(OfferStatus.valueOf(status).getValue());
+            propertyService.updatePropertyStatus(offer.getProperty().getId(), OfferStatus.valueOf(status).getValue() == 1 ? 2 : 1);
             offerRepo.save(offer);
         }
     }
@@ -54,6 +58,7 @@ public class OfferServiceImpl implements OfferService {
         return offerRepo.findAllByProperty_Owner_Id(id);
 
     }
+
     @Override
     public void deleteOffer(long id) {
         offerRepo.deleteById(id);

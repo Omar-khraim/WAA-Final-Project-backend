@@ -20,4 +20,10 @@ public interface PropertyService {
     List<PropertyDto> filter(Integer numOfRooms, Integer numberOfBathrooms, String zip, String city, Double price);
 
     List<Property> findUserLikedProperties(long userId);
+
+    void updatePropertyStatus (long id,int status);
+
+    List<PropertyDto> findAllByOwner_Id(long id);
+
+
 }

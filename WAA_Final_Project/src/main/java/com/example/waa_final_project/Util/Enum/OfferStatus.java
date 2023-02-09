@@ -4,7 +4,7 @@ public enum OfferStatus {
     Approved(1),
     Rejected(2),
     Deleted(3),
-    Waiting(3);
+    Waiting(4);
 
 
     private final int value;

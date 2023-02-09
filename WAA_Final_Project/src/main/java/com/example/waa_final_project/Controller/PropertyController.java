@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("api/v1/properties")
 public class PropertyController {
 
@@ -19,23 +20,23 @@ public class PropertyController {
     }
 
     @GetMapping
-    public List<PropertyDto> findAll(){
+    public List<PropertyDto> findAll() {
         return propertyService.findAll();
     }
 
     @GetMapping("/{id}")
-    public PropertyDto findById(@PathVariable long id){
+    public PropertyDto findById(@PathVariable long id) {
         return propertyService.findById(id);
     }
 
     @PostMapping
-    public void addProperty(@RequestBody PropertyDto property){
+    public void addProperty(@RequestBody PropertyDto property) {
         propertyService.addProperty(property);
     }
 
 
     @PutMapping
-    public void editProperty(@RequestBody PropertyDto property){
+    public void editProperty(@RequestBody PropertyDto property) {
         propertyService.update(property);
     }
 
@@ -44,12 +45,22 @@ public class PropertyController {
                                     @RequestParam(value = "bathrooms", required = false) Integer bathrooms,
                                     @RequestParam(value = "zip", required = false) String zip,
                                     @RequestParam(value = "city", required = false) String city,
-                                    @RequestParam(value = "price", required = false) Double price){
+                                    @RequestParam(value = "price", required = false) Double price) {
         return propertyService.filter(rooms, bathrooms, zip, city, price);
     }
 
     @GetMapping("/likes/{userId}")
-    public List<Property> findUserLikedPropertyId(@PathVariable long userId){
+    public List<Property> findUserLikedPropertyId(@PathVariable long userId) {
         return propertyService.findUserLikedProperties(userId);
+    }
+
+    @PutMapping("{id}/contingent")
+    public void makePropertyContingent(@PathVariable long id) {
+        propertyService.updatePropertyStatus(id, 3);
+    }
+
+    @PutMapping("{id}/sold")
+    public void makePropertySold(@PathVariable long id) {
+        propertyService.updatePropertyStatus(id, 4);
     }
 }

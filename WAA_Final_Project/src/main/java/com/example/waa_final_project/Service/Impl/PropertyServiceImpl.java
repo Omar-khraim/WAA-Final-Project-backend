@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -48,6 +47,8 @@ public class PropertyServiceImpl implements PropertyService {
         dto.setId(p.getId());
         dto.setPhotos(p.getPhotos());
         dto.setPrice(p.getPrice());
+        dto.setOffers(p.getOffers());
+        dto.setLikes(p.getLikes());
         return dto;
     }
 
@@ -108,5 +109,24 @@ public class PropertyServiceImpl implements PropertyService {
     @Override
     public List<Property> findUserLikedProperties(long userId) {
         return propertyRepo.findAllByLikes_Users_Id(userId);
+    }
+
+    @Override
+    public void updatePropertyStatus(long id, int status) {
+        var prop = propertyRepo.findAllById(id);
+        if (prop != null) {
+            prop.setStatus(status);
+            propertyRepo.save(prop);
+        }
+    }
+
+    @Override
+    public List<PropertyDto> findAllByOwner_Id(long id) {
+        var props = propertyRepo.findAllByOwner_Id(id);
+        List<PropertyDto> propertyDtos = new ArrayList<>();
+        props.forEach(p -> {
+            propertyDtos.add(CreateDto(p));
+        });
+        return propertyDtos;
     }
 }

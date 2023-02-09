@@ -18,4 +18,7 @@ public interface PropertyRepo extends JpaRepository<Property, Long> {
 
     List<Property> findAllByLikes_Users_Id(long id);
 
+    List<Property> findAllByOwner_Id(long id);
+
+
 }
