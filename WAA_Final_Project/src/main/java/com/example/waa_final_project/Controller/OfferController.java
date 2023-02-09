@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.*;
 public class OfferController {
     @Autowired
     OfferService    offerService;
-    @SendEmail
-    @PostMapping
-    public String sendOffer(@RequestBody Offer offer){
-        offerService.sendOffer(offer);
-        return "sent successfully";
-    }
+//    @SendEmail
+//    @PostMapping
+//    public String sendOffer(@RequestBody Offer offer){
+//        offerService.sendOffer(offer);
+//        return "sent successfully";
+//    }
 
     @PutMapping("/owner/{id}")
     public String updateStatus(@PathVariable("id") long id, @RequestParam(value = "status", required = false) String status){

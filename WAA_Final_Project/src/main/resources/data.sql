@@ -29,8 +29,8 @@ insert into property ( area_in_square_feet, bathroom_num, room_num, status, pric
 values (1200, 3, 2, 2,150000, 2, 2);
 
 
-insert into offer (offer_description, status, agent_email, customer_id, property_id)
-values (' Iam interested in apartment 1', 'pending','aboukham.abdelaziz@gmail.com', 2, 1);
+-- insert into offer (offer_description, status, agent_email, customer_id, property_id)
+-- values (' Iam interested in apartment 1', 'pending','aboukham.abdelaziz@gmail.com', 2, 1);
 
 
 insert into likes ( property_id, users_id)
