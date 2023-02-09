@@ -54,7 +54,7 @@ public class AuthServiceImpl implements AuthService {
         final String accessToken = jwtUtil.generateToken(userDetails);
         final String refreshToken = jwtUtil.generateRefreshToken(loginRequest.getEmail());
         Users users = usersService.findAllByEmail(loginRequest.getEmail());
-        return new LogInResponseDTO(accessToken, refreshToken, users.getUsername(), users.getId());
+        return new LogInResponseDTO(accessToken, refreshToken, users.getUsername(), users.getId(),users.getRole().getId());
     }
 
     @Override
@@ -71,7 +71,7 @@ public class AuthServiceImpl implements AuthService {
             final String accessToken = jwtUtil.doGenerateToken(jwtUtil.getSubject(refreshTokenRequest.getRefreshToken()));
             String userName = jwtUtil.getUsernameFromToken(refreshTokenRequest.getAccessToken());
             Users users = usersService.findAllByEmail(userName);
-            var loginResponse = new LogInResponseDTO(accessToken, refreshTokenRequest.getRefreshToken(), userName, users.getId());
+            var loginResponse = new LogInResponseDTO(accessToken, refreshTokenRequest.getRefreshToken(), userName, users.getId(),users.getRole().getId());
             // TODO (OPTIONAL) When to renew the refresh token?
             return loginResponse;
         }

@@ -27,6 +27,7 @@ public class Users {
     private String username;
     @JsonIgnore
     private String password;
+    private String phoneNumber;
 
 
     @OneToOne(fetch = FetchType.LAZY)
