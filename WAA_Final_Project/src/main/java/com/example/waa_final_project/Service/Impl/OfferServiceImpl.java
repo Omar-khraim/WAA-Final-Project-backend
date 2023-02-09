@@ -59,5 +59,10 @@ public class OfferServiceImpl implements OfferService {
         offerRepo.deleteById(id);
     }
 
+    @Override
+    public Offer findAllById(long id) {
+        return offerRepo.findAllById(id);
+    }
+
 
 }

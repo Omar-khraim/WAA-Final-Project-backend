@@ -19,6 +19,11 @@ public class OfferController {
 //        return "sent successfully";
 //    }
 
+    @GetMapping("/{id}")
+    public Offer getOfferDetails(@PathVariable("id") long id) {
+        return offerService.findAllById(id);
+    }
+
     @PutMapping("/{id}/approve")
     public String updateStatusApproved(@PathVariable("id") long id) {
         offerService.updateOfferStatus(id, "Approved");

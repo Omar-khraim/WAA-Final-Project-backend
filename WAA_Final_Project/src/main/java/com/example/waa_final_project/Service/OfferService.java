@@ -10,5 +10,7 @@ public interface OfferService {
     public List<Offer> findAllByUser_Id(long id);
     public List<Offer> findAllByProperty_Owner_Id(long id);
     public void deleteOffer(long id);
+    Offer findAllById(long id);
+
 
 }
