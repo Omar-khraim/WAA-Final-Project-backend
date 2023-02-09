@@ -1,5 +1,6 @@
 package com.example.waa_final_project.Controller;
 
+import com.example.waa_final_project.Dto.UserSignUpDto;
 import com.example.waa_final_project.Dto.UsersDto;
 import com.example.waa_final_project.Entity.Offer;
 import com.example.waa_final_project.Entity.Users;
@@ -29,7 +30,7 @@ public class UserController {
     }
 
     @PostMapping
-    public void addUser(@RequestBody UsersDto user){
+    public void addUser(@RequestBody UserSignUpDto user){
         usersService.addUser(user);
     }
 
