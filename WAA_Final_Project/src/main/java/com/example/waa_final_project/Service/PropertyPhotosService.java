@@ -6,5 +6,5 @@ import java.io.IOException;
 
 public interface PropertyPhotosService {
 
-    void addPhoto(MultipartFile photoDto) throws IOException;
+    void addPhoto(long propId, MultipartFile photoDto) throws IOException;
 }
