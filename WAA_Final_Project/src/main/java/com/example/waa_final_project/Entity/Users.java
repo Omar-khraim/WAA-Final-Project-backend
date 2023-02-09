@@ -1,6 +1,7 @@
 package com.example.waa_final_project.Entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -16,7 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 
-@JsonIgnoreProperties({"properties"})
+//@JsonIgnoreProperties({"properties"})
 public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,20 +31,25 @@ public class Users {
     private String phoneNumber;
 
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne
     @JsonManagedReference
-    @JsonIgnore
+//    @JsonIgnore
     private Role role;
 
 
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
-    @JsonManagedReference
-    @JsonIgnore
+    @JsonBackReference
+//    @JsonIgnore
     private List<Property> properties;
 
-    @OneToMany(mappedBy = "users", fetch = FetchType.LAZY)
-    @JsonManagedReference
-    @JsonIgnore
+    @OneToMany(mappedBy = "users")
+    @JsonBackReference
+//    @JsonIgnore
     List<Like> likes;
+
+    @OneToMany(mappedBy = "user")
+    @JsonBackReference
+//    @JoinColumn(name = "customer_id")
+    List<Offer> offers;
 
 }

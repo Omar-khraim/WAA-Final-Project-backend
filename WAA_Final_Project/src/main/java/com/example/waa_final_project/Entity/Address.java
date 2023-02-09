@@ -1,9 +1,7 @@
 package com.example.waa_final_project.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,4 +19,8 @@ public class Address {
     String state;
     String street;
     int zipCode;
+
+    @OneToOne(mappedBy = "address")
+    @JsonBackReference
+    Property property;
 }

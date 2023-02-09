@@ -17,6 +17,7 @@ public class Offer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
+
     String offerType;
     String offerDescription;
     int status;
@@ -24,13 +25,13 @@ public class Offer {
     double offerAmount;
     double creditScore;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "customer_id")
-    @JsonBackReference
+    @ManyToOne
+    //    @JoinColumn(name = "customer_id")
+    @JsonManagedReference
     Users user;
     @ManyToOne
-    @JoinColumn(name = "property_id")
-    @JsonIgnore
+//    @JoinColumn(name = "property_id")
+    @JsonManagedReference
     Property property;
 
 }

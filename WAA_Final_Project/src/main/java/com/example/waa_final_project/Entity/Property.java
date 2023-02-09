@@ -30,23 +30,24 @@ public class Property {
     @JsonBackReference
     Users owner;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "address_id")
-            @JsonIgnore
+    @OneToOne
+//    @JoinColumn(name = "address_id")
+    @JsonManagedReference
     Address address;
 
-    @OneToMany(mappedBy = "property", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "property")
     @JsonBackReference
     List<PropertyPhotos> photos;
 
 
-    @OneToMany(mappedBy = "property", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "property")
+    @JsonBackReference
     List<Offer> offers;
 
 
     @JsonIgnore
-    @JsonManagedReference
-    @OneToMany(mappedBy = "property", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonBackReference
+    @OneToMany(mappedBy = "property", cascade = CascadeType.ALL)
     List<Like> likes;
 
 

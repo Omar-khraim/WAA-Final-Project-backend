@@ -40,9 +40,12 @@ values (1200, 3, 2, 2, 150000, 2, 1);
 -- values ('', 500, 5000, 'i want your house', 'house', 1, 2, 2);
 -- values ('', 600, 4900, 'i want your house too ', 'house', 1, 2, 1);
 
-INSERT INTO public.offer (id, agent_email, credit_score, offer_amount, offer_description, offer_type, status, property_id, customer_id) VALUES (1, null, 500, 500, 'mkiwan offer', '', 0, 1, 2);
-INSERT INTO public.offer (id, agent_email, credit_score, offer_amount, offer_description, offer_type, status, property_id, customer_id) VALUES (2, null, 600, 600, 'mkiwan offer', '', 0, 2, 2);
-INSERT INTO public.offer (id, agent_email, credit_score, offer_amount, offer_description, offer_type, status, property_id, customer_id) VALUES (3, null, 660, 123456, 'kiki offer', '', 0, 1, 3);
+INSERT INTO public.offer ( agent_email, credit_score, offer_amount, offer_description, offer_type, status, property_id, user_id)
+VALUES ( null, 500, 500, 'mkiwan offer', '', 0, 1, 2);
+INSERT INTO public.offer ( agent_email, credit_score, offer_amount, offer_description, offer_type, status, property_id, user_id)
+VALUES ( null, 600, 600, 'mkiwan offer', '', 0, 2, 2);
+INSERT INTO public.offer ( agent_email, credit_score, offer_amount, offer_description, offer_type, status, property_id, user_id)
+VALUES ( null, 660, 123456, 'kiki offer', '', 0, 1, 3);
 
 
 insert into likes (property_id, users_id)
