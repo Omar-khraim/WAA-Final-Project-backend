@@ -15,9 +15,11 @@ public class PropertyPhotos {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
 
-    @Lob
-    @Column(length = 1000)
-    byte[] image;
+//    @Lob
+//    @Column(length = 1000)
+//    byte[] image;
+    private String name;
+    private String path;
 
     @ManyToOne
     Property property;

@@ -1,8 +1,10 @@
 package com.example.waa_final_project.Service;
 
-import com.example.waa_final_project.Dto.PropertyPhotoDto;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 public interface PropertyPhotosService {
 
-    void addPhoto(PropertyPhotoDto photoDto);
+    void addPhoto(MultipartFile photoDto) throws IOException;
 }
