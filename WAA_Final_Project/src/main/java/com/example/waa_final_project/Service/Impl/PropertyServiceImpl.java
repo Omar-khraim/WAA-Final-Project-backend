@@ -40,9 +40,14 @@ public class PropertyServiceImpl implements PropertyService {
     }
 
     public PropertyDto CreateDto(Property p) {
+        StringBuilder sb = new StringBuilder();
+
         PropertyDto dto = new PropertyDto();
-        dto.setAddress(p.getAddress().getStreet() + ", " + p.getAddress().getCity() + ", " + p.getAddress().getState() + " " + p.getAddress().getZipCode());
-        dto.setDetails(p.getRoomNum() + " bed " + p.getBathroomNum() + " bath " + p.getAreaInSquareFeet() + " sqft");
+        String address = sb.append(p.getAddress().getStreet() + ", " + p.getAddress().getCity() + ", " + p.getAddress().getState() + " " + p.getAddress().getZipCode()).toString();
+        dto.setAddress(address);
+        sb = new StringBuilder();
+        String details = sb.append(p.getRoomNum() + " bed " + p.getBathroomNum() + " bath " + p.getAreaInSquareFeet() + " sqft").toString();
+        dto.setDetails(details);
         dto.setStatus(p.getStatus());
         dto.setId(p.getId());
         dto.setPhotos(p.getPhotos());
