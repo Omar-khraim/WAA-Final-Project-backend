@@ -11,4 +11,7 @@ public interface LikeService {
     List<Like> findByUserId(long userId);
 
     List<Like> findByPropertyId(long propertyId);
+    void deleteLike(Like like);
+
+
 }

@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/api/v1/likes")
 public class LikeController {
 
@@ -22,6 +23,10 @@ public class LikeController {
     @PostMapping
     public void addLike(@RequestBody AddLikeDto likeData) {
         likeService.addLike(likeData.getUserId(), likeData.getPropertyId());
+    }
+    @DeleteMapping
+    public void removeLike(@RequestBody Like likeData) {
+        likeService.deleteLike(likeData);
     }
 
     @GetMapping

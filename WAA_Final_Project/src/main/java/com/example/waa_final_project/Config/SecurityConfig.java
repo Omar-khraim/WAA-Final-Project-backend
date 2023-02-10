@@ -1,7 +1,6 @@
 package com.example.waa_final_project.Config;
 
 
-
 import com.example.waa_final_project.Filter.JwtFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -48,6 +47,7 @@ public class SecurityConfig {
                 .requestMatchers("/api/v1/users/**").permitAll()
                 .requestMatchers("/api/v1/offers/**").permitAll()
                 .requestMatchers("/api/v1/photo/**").permitAll()
+                .requestMatchers("/api/v1/likes/**").permitAll()
 
 //                .requestMatchers("/api/v1/properties").hasAnyAuthority("Admin","Customer")
                 .anyRequest()

@@ -116,5 +116,15 @@ public class OfferServiceImpl implements OfferService {
         return offerRepo.findAllById(id);
     }
 
+    @Override
+    public List<Offer> findOffersByUser_IdAndProperty_Id(long user_id, long prop_id) {
+        return offerRepo.findOffersByUser_IdAndProperty_Id(user_id,prop_id);
+    }
+
+    @Override
+    public List<Offer> findOffersByProperty_Id(long prop_id) {
+        return offerRepo.findOffersByProperty_Id(prop_id);
+    }
+
 
 }

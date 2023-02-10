@@ -18,4 +18,6 @@ public interface OfferRepo extends JpaRepository<Offer, Long> {
     List<Offer> findOffersByIdIsNot(long id);
 
     List<Offer> findOffersByStatus(int status);
+    List<Offer> findOffersByUser_IdAndProperty_Id(long user_id,long prop_id);
+    List<Offer> findOffersByProperty_Id(long prop_id);
 }

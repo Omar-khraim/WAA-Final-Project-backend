@@ -48,4 +48,9 @@ public class LikeServiceImpl implements LikeService {
     public List<Like> findByPropertyId(long propertyId) {
         return likesRepo.findAllByPropertyId(propertyId);
     }
+
+    @Override
+    public void deleteLike(Like like) {
+        likesRepo.delete(like);
+    }
 }

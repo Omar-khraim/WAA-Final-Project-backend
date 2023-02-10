@@ -14,5 +14,9 @@ public interface OfferService {
     public void deleteOffer(long id);
     Offer findAllById(long id);
 
+    List<Offer> findOffersByUser_IdAndProperty_Id(long user_id,long prop_id);
+    List<Offer> findOffersByProperty_Id(long prop_id);
+
+
 
 }

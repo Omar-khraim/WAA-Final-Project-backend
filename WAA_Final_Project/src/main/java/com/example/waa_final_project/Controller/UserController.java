@@ -70,5 +70,9 @@ public class UserController {
         return offerService.findAllByProperty_Owner_Id(owner_id);
     }
 
+    @GetMapping("/properties/{prop_id}/offers")
+    public List<Offer> getOwnerPropertyOffers(@PathVariable(name = "prop_id") long prop_id) {
+        return offerService.findOffersByProperty_Id(prop_id);
+    }
 
 }
