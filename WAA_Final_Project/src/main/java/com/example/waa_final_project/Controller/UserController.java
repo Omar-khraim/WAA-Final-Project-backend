@@ -1,5 +1,6 @@
 package com.example.waa_final_project.Controller;
 
+import com.example.waa_final_project.Dto.LogIn.OfferDTO;
 import com.example.waa_final_project.Dto.PropertyDto;
 import com.example.waa_final_project.Dto.UserSignUpDto;
 import com.example.waa_final_project.Dto.UsersDto;
@@ -50,7 +51,7 @@ public class UserController {
 
 
     @PostMapping("/{user_id}/properties/{prop_id}/offers")
-    public String addUserPost(@PathVariable(name = "prop_id") long prop_id, @PathVariable(name = "user_id") long user_id, @RequestBody Offer offer) {
+    public String addUserPost(@PathVariable(name = "prop_id") long prop_id, @PathVariable(name = "user_id") long user_id, @RequestBody OfferDTO offer) {
         offerService.sendOffer(prop_id, user_id, offer);
         return "sent successfully";
     }

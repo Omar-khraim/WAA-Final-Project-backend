@@ -2,6 +2,7 @@ package com.example.waa_final_project.Reposetory;
 
 import com.example.waa_final_project.Entity.Offer;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -20,4 +21,6 @@ public interface OfferRepo extends JpaRepository<Offer, Long> {
     List<Offer> findOffersByStatus(int status);
     List<Offer> findOffersByUser_IdAndProperty_Id(long user_id,long prop_id);
     List<Offer> findOffersByProperty_Id(long prop_id);
+    @Query("SELECT MAX(id) from Offer")
+    Long findMaxId();
 }

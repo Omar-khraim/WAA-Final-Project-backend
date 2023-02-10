@@ -18,10 +18,10 @@ public class Like {
     long id;
 
     @ManyToOne
-    @JsonBackReference
+    @JsonBackReference("propertyLikeReference")
     Property property;
 
     @ManyToOne
-    @JsonBackReference
+    @JsonBackReference("usersLikeReference")
     Users users;
 }

@@ -19,7 +19,7 @@ public class Role {
     private String title;
 
     @OneToOne(mappedBy = "role")
-    @JsonBackReference
+    @JsonBackReference("usersRoleReference")
 //    @JsonIgnore
     private Users users;
 }

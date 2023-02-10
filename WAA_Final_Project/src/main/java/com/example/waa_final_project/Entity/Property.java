@@ -27,26 +27,26 @@ public class Property {
     double price;
 
     @ManyToOne
-    @JsonBackReference
+    @JsonBackReference("usersPropertyReference")
     Users owner;
 
     @OneToOne
 //    @JoinColumn(name = "address_id")
-    @JsonManagedReference
+    @JsonManagedReference("propertyAddressReference")
     Address address;
 
     @OneToMany(mappedBy = "property")
-    @JsonBackReference
+    @JsonBackReference("propertyPropertyPhotosReference")
     List<PropertyPhotos> photos;
 
 
     @OneToMany(mappedBy = "property")
-    @JsonBackReference
+    @JsonBackReference("offerPropReference")
     List<Offer> offers;
 
 
     @JsonIgnore
-    @JsonBackReference
+    @JsonBackReference("propertyLikeReference")
     @OneToMany(mappedBy = "property", cascade = CascadeType.ALL)
     List<Like> likes;
 

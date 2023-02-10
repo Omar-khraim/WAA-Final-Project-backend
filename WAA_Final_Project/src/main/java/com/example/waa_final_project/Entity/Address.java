@@ -21,6 +21,6 @@ public class Address {
     int zipCode;
 
     @OneToOne(mappedBy = "address")
-    @JsonBackReference
+    @JsonBackReference("propertyAddressReference")
     Property property;
 }

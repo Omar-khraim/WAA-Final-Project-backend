@@ -1,11 +1,12 @@
 package com.example.waa_final_project.Service;
 
+import com.example.waa_final_project.Dto.LogIn.OfferDTO;
 import com.example.waa_final_project.Entity.Offer;
 
 import java.util.List;
 
 public interface OfferService {
-    public void sendOffer(long prop_id,long user_id,Offer offer);
+    public void sendOffer(long prop_id, long user_id, OfferDTO offer);
     public void updateAcceptedOfferStatus(long id, String status);
     public void updateRejectedOfferStatus(long id, String status);
     public void updateContingentOfferStatus(long id, String status);

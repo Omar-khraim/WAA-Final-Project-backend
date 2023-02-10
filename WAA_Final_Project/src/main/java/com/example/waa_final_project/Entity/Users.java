@@ -32,23 +32,23 @@ public class Users {
 
 
     @OneToOne
-    @JsonManagedReference
+    @JsonManagedReference("usersRoleReference")
 //    @JsonIgnore
     private Role role;
 
 
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
-    @JsonBackReference
+    @JsonBackReference("usersPropertyReference")
 //    @JsonIgnore
     private List<Property> properties;
 
     @OneToMany(mappedBy = "users")
-    @JsonBackReference
+    @JsonBackReference("usersLikeReference")
 //    @JsonIgnore
     List<Like> likes;
 
     @OneToMany(mappedBy = "user")
-    @JsonBackReference
+    @JsonBackReference("offerUserReference")
 //    @JoinColumn(name = "customer_id")
     List<Offer> offers;
 

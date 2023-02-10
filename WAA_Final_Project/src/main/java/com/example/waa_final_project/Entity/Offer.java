@@ -27,11 +27,11 @@ public class Offer {
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     //    @JoinColumn(name = "customer_id")
-    @JsonManagedReference
+    @JsonManagedReference("offerUserReference")
     Users user;
     @ManyToOne(cascade = CascadeType.PERSIST)
 //    @JoinColumn(name = "property_id")
-    @JsonManagedReference
+    @JsonManagedReference("offerPropReference")
     Property property;
 
 }

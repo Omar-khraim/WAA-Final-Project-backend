@@ -1,9 +1,12 @@
 package com.example.waa_final_project.Service.Impl;
 
+import com.example.waa_final_project.Dto.LogIn.OfferDTO;
+import com.example.waa_final_project.Dto.UsersDto;
 import com.example.waa_final_project.Entity.Offer;
 import com.example.waa_final_project.Reposetory.OfferRepo;
 import com.example.waa_final_project.Service.OfferService;
 import com.example.waa_final_project.Util.Enum.OfferStatus;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.waa_final_project.Reposetory.PropertyRepo;
@@ -23,10 +26,13 @@ public class OfferServiceImpl implements OfferService {
 
     @Autowired
     PropertyServiceImpl propertyService;
+    @Autowired
+    ModelMapper mapper;
 
     @Override
-    public void sendOffer(long prop_id, long user_id, Offer offer) {
+    public void sendOffer(long prop_id, long user_id, OfferDTO offerDTO) {
         var user = usersRepo.findAllById(user_id);
+        var offer = mapper.map(offerDTO, Offer.class);
         if (user != null) {
             var prop = propertyRepo.findAllById(prop_id);
             if (prop != null) {
@@ -118,7 +124,7 @@ public class OfferServiceImpl implements OfferService {
 
     @Override
     public List<Offer> findOffersByUser_IdAndProperty_Id(long user_id, long prop_id) {
-        return offerRepo.findOffersByUser_IdAndProperty_Id(user_id,prop_id);
+        return offerRepo.findOffersByUser_IdAndProperty_Id(user_id, prop_id);
     }
 
     @Override
