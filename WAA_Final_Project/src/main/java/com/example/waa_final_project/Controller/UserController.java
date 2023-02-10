@@ -1,5 +1,6 @@
 package com.example.waa_final_project.Controller;
 
+import com.example.waa_final_project.Dto.AddPropertyDto;
 import com.example.waa_final_project.Dto.LogIn.OfferDTO;
 import com.example.waa_final_project.Dto.PropertyDto;
 import com.example.waa_final_project.Dto.UserSignUpDto;
@@ -77,5 +78,11 @@ public class UserController {
     public List<Offer> getOwnerPropertyOffers(@PathVariable(name = "prop_id") long prop_id) {
         return offerService.findOffersByProperty_Id(prop_id);
     }
+
+    @PostMapping("{owner_id}/property")
+    public void addProperty(@PathVariable long owner_id,@RequestBody AddPropertyDto property) {
+        propertyService.addProperty(owner_id,property);
+    }
+
 
 }

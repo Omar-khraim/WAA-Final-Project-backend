@@ -1,6 +1,7 @@
 package com.example.waa_final_project.Controller;
 
 
+import com.example.waa_final_project.Dto.AddPropertyDto;
 import com.example.waa_final_project.Dto.PropertyDto;
 import com.example.waa_final_project.Entity.Property;
 import com.example.waa_final_project.Service.PropertyService;
@@ -29,10 +30,10 @@ public class PropertyController {
         return propertyService.findById(id);
     }
 
-    @PostMapping
-    public void addProperty(@RequestBody PropertyDto property) {
-        propertyService.addProperty(property);
-    }
+//    @PostMapping
+//    public void addProperty(@RequestBody AddPropertyDto property) {
+//        propertyService.addProperty(property);
+//    }
 
 
     @PutMapping
@@ -44,9 +45,10 @@ public class PropertyController {
     public List<PropertyDto> filter(@RequestParam(value = "rooms", required = false) Integer rooms,
                                     @RequestParam(value = "bathrooms", required = false) Integer bathrooms,
                                     @RequestParam(value = "zip", required = false) String zip,
+                                    @RequestParam(value = "propertyType", required = false) String propertyType,
                                     @RequestParam(value = "city", required = false) String city,
-                                    @RequestParam(value = "price", required = false) Double price) {
-        return propertyService.filter(rooms, bathrooms, zip, city, price);
+                                    @RequestParam(value = "priceRange", required = false) String priceRange) {
+        return propertyService.filter(rooms, bathrooms, zip, city, priceRange,propertyType);
     }
 
     @GetMapping("/likes/{userId}")

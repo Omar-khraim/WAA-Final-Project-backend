@@ -17,6 +17,9 @@ public class PropertyDto {
     String details;
     String address;
     double price;
+    String priceRange;
+    String propertyType;
+
 
     private List<PropertyPhotos> photos;
 

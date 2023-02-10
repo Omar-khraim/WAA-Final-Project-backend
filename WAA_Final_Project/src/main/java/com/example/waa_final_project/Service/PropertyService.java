@@ -1,6 +1,7 @@
 package com.example.waa_final_project.Service;
 
 
+import com.example.waa_final_project.Dto.AddPropertyDto;
 import com.example.waa_final_project.Dto.PropertyDto;
 import com.example.waa_final_project.Entity.Property;
 
@@ -14,10 +15,10 @@ public interface PropertyService {
 
     void deleteById(long id);
 
-    void addProperty(PropertyDto property);
+    void addProperty(long owner_id,AddPropertyDto property);
 
     void update(PropertyDto property);
-    List<PropertyDto> filter(Integer numOfRooms, Integer numberOfBathrooms, String zip, String city, Double price);
+    List<PropertyDto> filter(Integer numOfRooms, Integer numberOfBathrooms, String zip, String city, String priceRange,String propertyType);
 
     List<Property> findUserLikedProperties(long userId);
 

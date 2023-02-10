@@ -25,12 +25,15 @@ public class Property {
     int status;
     int areaInSquareFeet;
     double price;
+    String priceRange;
+    String propertyType;
+
 
     @ManyToOne
     @JsonBackReference("usersPropertyReference")
     Users owner;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
 //    @JoinColumn(name = "address_id")
     @JsonManagedReference("propertyAddressReference")
     Address address;

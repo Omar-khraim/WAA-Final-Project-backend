@@ -1,5 +1,6 @@
 package com.example.waa_final_project.Service.Impl;
 
+import com.example.waa_final_project.Dto.AddPropertyDto;
 import com.example.waa_final_project.Dto.PropertyDto;
 import com.example.waa_final_project.Entity.Address;
 import com.example.waa_final_project.Entity.Property;
@@ -54,6 +55,7 @@ public class PropertyServiceImpl implements PropertyService {
         dto.setDetails(details);
         dto.setStatus(p.getStatus());
         dto.setId(p.getId());
+        dto.setPropertyType(p.getPropertyType());
         dto.setPhotos(p.getPhotos());
         dto.setPrice(p.getPrice());
         dto.setOffers(p.getOffers());
@@ -77,8 +79,19 @@ public class PropertyServiceImpl implements PropertyService {
     }
 
     @Override
-    public void addProperty(PropertyDto propertyDto) {
-        propertyRepo.save(modelMapper.map(propertyDto, Property.class));
+    public void addProperty(long owner_id, AddPropertyDto propertyDto) {
+        var owner = usersRepo.findAllById(owner_id);
+        if (owner != null) {
+            var prop = modelMapper.map(propertyDto, Property.class);
+            Address address = new Address();
+            address.setCity(propertyDto.getCity());
+            address.setStreet(propertyDto.getStreet());
+            address.setZipCode(propertyDto.getZipCode());
+            address.setState(propertyDto.getState());
+            prop.setAddress(address);
+            prop.setOwner(owner);
+            propertyRepo.save(prop);
+        }
     }
 
     @Override
@@ -87,25 +100,38 @@ public class PropertyServiceImpl implements PropertyService {
     }
 
     @Override
-    public List<PropertyDto> filter(Integer numOfRooms, Integer numberOfBathrooms, String zip, String city, Double price) {
+    public List<PropertyDto> filter(Integer numOfRooms, Integer numberOfBathrooms, String zip, String city, String priceRange, String propertyType) {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Property> cq = cb.createQuery(Property.class);
         Root<Property> root = cq.from(Property.class);
         Join<Property, Address> addressJoin = root.join("address");
-
+        int lowerBound = 0;
+        int upperBound = 0;
+        if (!priceRange.isEmpty()) {
+            if (priceRange.contains("+")) {
+                lowerBound = 200000;
+                upperBound = Integer.MAX_VALUE;
+            } else {
+                String[] range = priceRange.split("-");
+                lowerBound = Integer.parseInt(range[0]);
+                upperBound = Integer.parseInt(range[1]);
+            }
+        }
         List<Predicate> searchCriteria = new ArrayList<>();
 
         if (numOfRooms != null)
-            searchCriteria.add(cb.equal(root.get("roomNum"), numOfRooms.intValue()));
+            searchCriteria.add(cb.equal(root.get("roomNum"), numOfRooms));
         if (numberOfBathrooms != null)
-            searchCriteria.add(cb.equal(root.get("bathroomNum"), numberOfBathrooms.intValue()));
+            searchCriteria.add(cb.equal(root.get("bathroomNum"), numberOfBathrooms));
         if (zip != null && !zip.isEmpty())
             searchCriteria.add(cb.equal(addressJoin.get("zip"), zip));
         if (city != null && !city.isEmpty())
             searchCriteria.add(cb.equal(addressJoin.get("city"), city));
-        if (price != null)
-            searchCriteria.add(cb.equal(root.get("price"), price));
-        cq.select(root).where(cb.and(searchCriteria.toArray(new Predicate[searchCriteria.size()])));
+        if (!priceRange.isEmpty())
+            searchCriteria.add(cb.between(root.get("price"), lowerBound, upperBound));
+        if (!propertyType.isEmpty())
+            searchCriteria.add(cb.like(root.get("propertyType"), "%" + propertyType + "%"));
+        cq.select(root).where(cb.and(searchCriteria.toArray(new Predicate[0])));
 
         var props = entityManager.createQuery(cq).getResultList();
         List<PropertyDto> propertyDtos = new ArrayList<>();

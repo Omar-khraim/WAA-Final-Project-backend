@@ -22,15 +22,19 @@ insert into public.address (city, state, street, zip_code)
 values ('IowaCity', 'Iowa', '6th street', 52240);
 insert into public.address (city, state, street, zip_code)
 values ('Des Moines', 'Iowa', '8th street', 50047);
+insert into public.address (city, state, street, zip_code)
+values ('Amman', 'Amman', '8th street', 88975);
 
 
 
-insert into property (area_in_square_feet, bathroom_num, room_num, status, price, address_id, owner_id)
-values (950, 2, 3, 1, 35000, 1, 1);
-insert into property (area_in_square_feet, bathroom_num, room_num, status, price, address_id, owner_id)
-values (950, 2, 3, 1, 100000, 3, 1);
-insert into property (area_in_square_feet, bathroom_num, room_num, status, price, address_id, owner_id)
-values (1200, 3, 2, 1, 150000, 2, 1);
+insert into property (property_type,area_in_square_feet, bathroom_num, room_num, status, price, address_id, owner_id)
+values ('house',950, 2, 3, 1, 35000, 1, 1);
+insert into property (property_type,area_in_square_feet, bathroom_num, room_num, status, price, address_id, owner_id)
+values ('apartment',950, 2, 3, 1, 100000, 3, 1);
+insert into property (property_type,area_in_square_feet, bathroom_num, room_num, status, price, address_id, owner_id)
+values ('house',1200, 3, 2, 1, 150000, 2, 1);
+insert into property (property_type,area_in_square_feet, bathroom_num, room_num, status, price, address_id, owner_id)
+values ('house',6500, 5, 4, 1, 350000, 4, 1);
 
 
 -- insert into offer (offer_description, status, agent_email, customer_id, property_id)
