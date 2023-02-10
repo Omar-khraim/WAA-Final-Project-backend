@@ -8,6 +8,7 @@ import com.example.waa_final_project.Entity.Offer;
 import com.example.waa_final_project.Service.OfferService;
 import com.example.waa_final_project.Service.PropertyService;
 import com.example.waa_final_project.Service.UsersService;
+import com.example.waa_final_project.aop.annotation.SendEmail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -50,6 +51,7 @@ public class UserController {
     }
 
 
+    @SendEmail
     @PostMapping("/{user_id}/properties/{prop_id}/offers")
     public String addUserPost(@PathVariable(name = "prop_id") long prop_id, @PathVariable(name = "user_id") long user_id, @RequestBody OfferDTO offer) {
         offerService.sendOffer(prop_id, user_id, offer);

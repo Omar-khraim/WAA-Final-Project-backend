@@ -25,5 +25,7 @@ public interface PropertyService {
 
     List<PropertyDto> findAllByOwner_Id(long id);
 
+    String getOwnerEmailByPropertyId(long prop_id);
+
 
 }

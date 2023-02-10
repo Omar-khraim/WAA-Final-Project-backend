@@ -1,5 +1,6 @@
 package com.example.waa_final_project.aop;
 
+import com.example.waa_final_project.Dto.LogIn.OfferDTO;
 import com.example.waa_final_project.Entity.Offer;
 import com.example.waa_final_project.Service.EmailService;
 import org.aspectj.lang.JoinPoint;
@@ -13,13 +14,19 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class EmailSenderAspect {
     @Autowired
-    EmailService    emailService;
+    EmailService emailService;
+
     @Pointcut("@annotation(com.example.waa_final_project.aop.annotation.SendEmail)")
-    public void execute(){}
+    public void execute() {
+    }
+
     @After("execute()")
-    public void send(JoinPoint joinPoint){
+    public void send(JoinPoint joinPoint) {
         Object[] args = joinPoint.getArgs();
-        Offer offer = (Offer) args[0];
-        emailService.send("Interest of property", offer.getOfferDescription(), offer.getAgentEmail());
+        if (args != null && args.length > 2) {
+            OfferDTO offer = (OfferDTO) args[2];
+            emailService.send("Interest of property", offer.getOfferDescription(), offer.getAgentEmail());
+        }
+
     }
 }

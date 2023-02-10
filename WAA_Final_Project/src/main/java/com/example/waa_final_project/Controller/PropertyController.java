@@ -63,4 +63,8 @@ public class PropertyController {
     public void makePropertySold(@PathVariable long id) {
         propertyService.updatePropertyStatus(id, 4);
     }
+    @GetMapping("{id}/ownerEmail")
+    public String getOwnerEmail(@PathVariable long id) {
+        return  propertyService.getOwnerEmailByPropertyId(id);
+    }
 }

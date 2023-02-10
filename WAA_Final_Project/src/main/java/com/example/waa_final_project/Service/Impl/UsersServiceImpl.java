@@ -16,11 +16,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class UsersServiceImpl  implements UsersService {
+public class UsersServiceImpl implements UsersService {
 
     private final OfferRepo offerRepo;
     private final RoleRepo roleRepo;
-    private final   UsersRepo   usersRepo;
+    private final UsersRepo usersRepo;
     private final ModelMapper mapper;
 
     private final PasswordEncoder passwordEncoder;
@@ -60,7 +60,7 @@ public class UsersServiceImpl  implements UsersService {
 
     @Override
     public void update(UsersDto user) {
-        usersRepo.save(mapper.map(user , Users.class));
+        usersRepo.save(mapper.map(user, Users.class));
     }
 
     @Override
@@ -71,6 +71,11 @@ public class UsersServiceImpl  implements UsersService {
     @Override
     public Users findAllByEmail(String email) {
         return usersRepo.findAllByEmail(email);
+    }
+
+    @Override
+    public Users findUsersByProperties_id(long prop_id) {
+        return usersRepo.findUsersByProperties_id(prop_id);
     }
 
 }

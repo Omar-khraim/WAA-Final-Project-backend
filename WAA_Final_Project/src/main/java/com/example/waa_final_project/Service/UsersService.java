@@ -15,5 +15,8 @@ public interface UsersService {
     public void deleteUser(long id);
     Users findAllByEmail(String email);
 
+    Users findUsersByProperties_id(long prop_id);
+
+
 
 }

@@ -4,6 +4,7 @@ import com.example.waa_final_project.Dto.PropertyDto;
 import com.example.waa_final_project.Entity.Address;
 import com.example.waa_final_project.Entity.Property;
 import com.example.waa_final_project.Reposetory.PropertyRepo;
+import com.example.waa_final_project.Reposetory.UsersRepo;
 import com.example.waa_final_project.Service.PropertyService;
 import com.example.waa_final_project.Util.Helper.ListMapper;
 import jakarta.persistence.EntityManager;
@@ -22,12 +23,15 @@ public class PropertyServiceImpl implements PropertyService {
     EntityManager entityManager;
     private final PropertyRepo propertyRepo;
 
+    private final UsersRepo usersRepo;
+
     private final ModelMapper modelMapper;
 
     private final ListMapper<Property, PropertyDto> listMapperToDto;
 
-    public PropertyServiceImpl(PropertyRepo propertyRepo, ModelMapper modelMapper, ListMapper<Property, PropertyDto> listMapper) {
+    public PropertyServiceImpl(PropertyRepo propertyRepo, UsersRepo usersRepo, ModelMapper modelMapper, ListMapper<Property, PropertyDto> listMapper) {
         this.propertyRepo = propertyRepo;
+        this.usersRepo = usersRepo;
         this.modelMapper = modelMapper;
         this.listMapperToDto = listMapper;
     }
@@ -134,4 +138,12 @@ public class PropertyServiceImpl implements PropertyService {
         });
         return propertyDtos;
     }
+
+    @Override
+    public String getOwnerEmailByPropertyId(long prop_id) {
+        var user = usersRepo.findUsersByProperties_id(prop_id);
+        return user.getEmail();
+    }
+
+
 }
