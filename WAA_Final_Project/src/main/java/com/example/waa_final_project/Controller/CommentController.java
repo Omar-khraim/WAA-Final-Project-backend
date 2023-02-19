@@ -28,7 +28,7 @@ public class CommentController {
     }
 
     @GetMapping("/offer/{offerId}")
-    List<CommentDTO> getByOfferId(@PathVariable long offerId){
+    List<CommentDTO> getByOfferId(@PathVariable String offerId){
         return commentService.getByOfferId(offerId);
     }
 

@@ -12,5 +12,5 @@ public interface CommentService {
 
     CommentDTO getBtId(long id);
 
-    List<CommentDTO> getByOfferId(long offerId);
+    List<CommentDTO> getByOfferId(String offerId);
 }

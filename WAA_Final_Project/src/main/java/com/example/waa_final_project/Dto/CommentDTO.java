@@ -12,5 +12,5 @@ public class CommentDTO {
     private Long Id;
     private String title;
     private String body;
-    private String offerId;
+//    private String offerId;
 }

@@ -31,7 +31,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public void deleteById(Long id) {
-        commentsRepo.deleteById(id);
+        commentsRepo.deleteByCommentId(id);
     }
 
     @Override
@@ -41,11 +41,12 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public CommentDTO getBtId(long id) {
-        return modelMapper.map(commentsRepo.findById(id), CommentDTO.class);
+        return modelMapper.map(commentsRepo.findByCommentId(id), CommentDTO.class);
     }
 
     @Override
-    public List<CommentDTO> getByOfferId(long offerId) {
-        return (List<CommentDTO>) listMapper.mapList(commentsRepo.findAllByOfferId(offerId),new CommentDTO());
+    public List<CommentDTO> getByOfferId(String offerId) {
+//        return (List<CommentDTO>) listMapper.mapList(commentsRepo.findAllByOfferId(offerId),new CommentDTO());
+        return null;
     }
 }

@@ -18,12 +18,11 @@ import org.springframework.data.mongodb.core.mapping.MongoId;
 public class Comment {
 
     @MongoId(FieldType.OBJECT_ID)
-
     private Long commentId;
 
     private String title;
     private String body;
 
-    private String offerId;
+//    private String offerId;
 
 }
