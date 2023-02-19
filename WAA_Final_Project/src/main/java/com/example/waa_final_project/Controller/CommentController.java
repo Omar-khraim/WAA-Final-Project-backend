@@ -1,10 +1,11 @@
 package com.example.waa_final_project.Controller;
 
 
+import com.example.waa_final_project.Dto.CommentDTO;
 import com.example.waa_final_project.Service.CommentService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/comments")
@@ -17,7 +18,27 @@ public class CommentController {
     }
 
     @PostMapping
-    public void addComment(){
-        commentService.addComment();
+    public void addComment(@RequestBody CommentDTO comment){
+        commentService.addComment(comment);
+    }
+
+    @GetMapping("/{commentId}")
+    CommentDTO getById(@PathVariable long commentId){
+        return commentService.getBtId(commentId);
+    }
+
+    @GetMapping("/offer/{offerId}")
+    List<CommentDTO> getByOfferId(@PathVariable long offerId){
+        return commentService.getByOfferId(offerId);
+    }
+
+    @PutMapping
+    void update(CommentDTO comment){
+        commentService.update(comment);
+    }
+
+    @DeleteMapping("/{id}")
+    void deleteById(@PathVariable long id){
+        commentService.deleteById(id);
     }
 }

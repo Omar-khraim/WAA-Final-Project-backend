@@ -1,7 +1,6 @@
-package com.example.waa_final_project.aop;
+package com.example.waa_final_project.AOP;
 
 import com.example.waa_final_project.Dto.LogIn.OfferDTO;
-import com.example.waa_final_project.Entity.Offer;
 import com.example.waa_final_project.Service.EmailService;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
@@ -16,7 +15,7 @@ public class EmailSenderAspect {
     @Autowired
     EmailService emailService;
 
-    @Pointcut("@annotation(com.example.waa_final_project.aop.annotation.SendEmail)")
+    @Pointcut("@annotation(com.example.waa_final_project.AOP.annotation.SendEmail)")
     public void execute() {
     }
 

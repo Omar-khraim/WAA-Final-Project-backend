@@ -9,7 +9,7 @@ import com.example.waa_final_project.Entity.Offer;
 import com.example.waa_final_project.Service.OfferService;
 import com.example.waa_final_project.Service.PropertyService;
 import com.example.waa_final_project.Service.UsersService;
-import com.example.waa_final_project.aop.annotation.SendEmail;
+import com.example.waa_final_project.AOP.annotation.SendEmail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
