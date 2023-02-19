@@ -84,5 +84,9 @@ public class UserController {
         propertyService.addProperty(owner_id,property);
     }
 
+    @GetMapping("/properties/zipcode/{zipcode}")
+    public List<UsersDto> findByPropZipCode(@PathVariable int zipcode){
+        return usersService.findUsersByProperty_Address_ZipCode(zipcode);
+    }
 
 }

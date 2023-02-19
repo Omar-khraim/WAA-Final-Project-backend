@@ -16,4 +16,6 @@ public interface UsersRepo extends JpaRepository<Users, Long> {
     Users findAllById(long id);
     Users findUsersByProperties_id(long prop_id);
 
+    List<Users> findUsersByProperties_Address_ZipCode(int zipCode);
+
 }

@@ -17,6 +17,6 @@ public interface UsersService {
 
     Users findUsersByProperties_id(long prop_id);
 
-
+    List<UsersDto> findUsersByProperty_Address_ZipCode(int zipCode);
 
 }

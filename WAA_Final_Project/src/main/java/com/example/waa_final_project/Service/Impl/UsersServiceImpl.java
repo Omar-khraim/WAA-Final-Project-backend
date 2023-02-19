@@ -7,6 +7,7 @@ import com.example.waa_final_project.Reposetory.OfferRepo;
 import com.example.waa_final_project.Reposetory.RoleRepo;
 import com.example.waa_final_project.Reposetory.UsersRepo;
 import com.example.waa_final_project.Service.UsersService;
+import com.example.waa_final_project.Util.Helper.ListMapper;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -22,14 +23,16 @@ public class UsersServiceImpl implements UsersService {
     private final RoleRepo roleRepo;
     private final UsersRepo usersRepo;
     private final ModelMapper mapper;
+    private final ListMapper<Users, UsersDto> listMapper;
 
     private final PasswordEncoder passwordEncoder;
 
-    public UsersServiceImpl(OfferRepo offerRepo, RoleRepo roleRepo, UsersRepo usersRepo, ModelMapper mapper, PasswordEncoder passwordEncoder) {
+    public UsersServiceImpl(OfferRepo offerRepo, RoleRepo roleRepo, UsersRepo usersRepo, ModelMapper mapper, ListMapper<Users, UsersDto> listMapper, PasswordEncoder passwordEncoder) {
         this.offerRepo = offerRepo;
         this.roleRepo = roleRepo;
         this.usersRepo = usersRepo;
         this.mapper = mapper;
+        this.listMapper = listMapper;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -76,6 +79,11 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public Users findUsersByProperties_id(long prop_id) {
         return usersRepo.findUsersByProperties_id(prop_id);
+    }
+
+    @Override
+    public List<UsersDto> findUsersByProperty_Address_ZipCode(int zipCode) {
+        return (List<UsersDto>) listMapper.mapList(usersRepo.findUsersByProperties_Address_ZipCode(zipCode), new UsersDto()) ;
     }
 
 }
