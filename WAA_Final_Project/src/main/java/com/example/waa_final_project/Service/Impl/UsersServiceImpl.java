@@ -3,6 +3,7 @@ package com.example.waa_final_project.Service.Impl;
 import com.example.waa_final_project.Dto.UserSignUpDto;
 import com.example.waa_final_project.Dto.UsersDto;
 import com.example.waa_final_project.Entity.Users;
+import com.example.waa_final_project.Entity.Projection.UserContactInfo;
 import com.example.waa_final_project.Reposetory.OfferRepo;
 import com.example.waa_final_project.Reposetory.RoleRepo;
 import com.example.waa_final_project.Reposetory.UsersRepo;
@@ -84,6 +85,11 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public List<UsersDto> findUsersByProperty_Address_ZipCode(int zipCode) {
         return (List<UsersDto>) listMapper.mapList(usersRepo.findUsersByProperties_Address_ZipCode(zipCode), new UsersDto()) ;
+    }
+
+    @Override
+    public List<UserContactInfo> getAllUsersContactInfo() {
+        return usersRepo.findAllBy();
     }
 
 }

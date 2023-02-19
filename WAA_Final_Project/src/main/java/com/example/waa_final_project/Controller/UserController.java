@@ -6,6 +6,7 @@ import com.example.waa_final_project.Dto.PropertyDto;
 import com.example.waa_final_project.Dto.UserSignUpDto;
 import com.example.waa_final_project.Dto.UsersDto;
 import com.example.waa_final_project.Entity.Offer;
+import com.example.waa_final_project.Entity.Projection.UserContactInfo;
 import com.example.waa_final_project.Service.OfferService;
 import com.example.waa_final_project.Service.PropertyService;
 import com.example.waa_final_project.Service.UsersService;
@@ -87,6 +88,11 @@ public class UserController {
     @GetMapping("/properties/zipcode/{zipcode}")
     public List<UsersDto> findByPropZipCode(@PathVariable int zipcode){
         return usersService.findUsersByProperty_Address_ZipCode(zipcode);
+    }
+
+    @GetMapping("/contact")
+    public List<UserContactInfo> getAllContactInfo(){
+        return usersService.getAllUsersContactInfo();
     }
 
 }
