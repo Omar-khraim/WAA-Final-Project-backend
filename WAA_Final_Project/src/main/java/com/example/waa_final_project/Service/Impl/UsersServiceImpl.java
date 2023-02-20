@@ -2,6 +2,7 @@ package com.example.waa_final_project.Service.Impl;
 
 import com.example.waa_final_project.Dto.UserSignUpDto;
 import com.example.waa_final_project.Dto.UsersDto;
+import com.example.waa_final_project.Entity.Projection.UserPropertiesPrice;
 import com.example.waa_final_project.Entity.Users;
 import com.example.waa_final_project.Entity.Projection.UserContactInfo;
 import com.example.waa_final_project.Reposetory.OfferRepo;
@@ -90,6 +91,11 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public List<UserContactInfo> getAllUsersContactInfo() {
         return usersRepo.findAllBy();
+    }
+
+    @Override
+    public UserPropertiesPrice findUserPropertyPriceTotal(long userId) {
+        return usersRepo.findUserPropertyPriceTotal(userId);
     }
 
 }

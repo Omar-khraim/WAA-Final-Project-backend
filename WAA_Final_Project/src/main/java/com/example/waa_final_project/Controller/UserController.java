@@ -7,6 +7,7 @@ import com.example.waa_final_project.Dto.UserSignUpDto;
 import com.example.waa_final_project.Dto.UsersDto;
 import com.example.waa_final_project.Entity.Offer;
 import com.example.waa_final_project.Entity.Projection.UserContactInfo;
+import com.example.waa_final_project.Entity.Projection.UserPropertiesPrice;
 import com.example.waa_final_project.Service.OfferService;
 import com.example.waa_final_project.Service.PropertyService;
 import com.example.waa_final_project.Service.UsersService;
@@ -95,4 +96,8 @@ public class UserController {
         return usersService.getAllUsersContactInfo();
     }
 
+    @GetMapping("/{id}/properties/price")
+    public UserPropertiesPrice findUserPropPrice(@PathVariable long id){
+        return usersService.findUserPropertyPriceTotal(id);
+    }
 }
