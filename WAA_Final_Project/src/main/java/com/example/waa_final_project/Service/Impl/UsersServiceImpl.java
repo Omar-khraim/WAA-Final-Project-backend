@@ -13,6 +13,8 @@ import com.example.waa_final_project.Service.UsersService;
 import com.example.waa_final_project.Util.Helper.ListMapper;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@EnableCaching
 public class UsersServiceImpl implements UsersService {
 
     private final OfferRepo offerRepo;
@@ -48,6 +51,7 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
+    @Cacheable(value = "user", key = "#id")
     public UsersDto findById(long id) {
         return mapper.map(usersRepo.findById(id).orElse(null), UsersDto.class);
     }
