@@ -1,6 +1,7 @@
 package com.example.waa_final_project.Reposetory;
 
 
+import com.example.waa_final_project.Entity.Projection.UserOffer;
 import com.example.waa_final_project.Entity.Projection.UserPropertiesPrice;
 import com.example.waa_final_project.Entity.Users;
 import com.example.waa_final_project.Entity.Projection.UserContactInfo;
@@ -18,10 +19,9 @@ public interface UsersRepo extends JpaRepository<Users, Long> {
     Users findAllById(long id);
     Users findUsersByProperties_id(long prop_id);
     List<Users> findUsersByProperties_Address_ZipCode(int zipCode);
-
     List<UserContactInfo> findAllBy();
-
     @Query("SELECT u.name as name, SUM(p.price) as propertyPriceTotal FROM Users u JOIN u.properties p  where u.id = :userId GROUP BY u.id  ")
     UserPropertiesPrice findUserPropertyPriceTotal(long userId);
+    UserOffer findUsersById(long id);
 
 }
