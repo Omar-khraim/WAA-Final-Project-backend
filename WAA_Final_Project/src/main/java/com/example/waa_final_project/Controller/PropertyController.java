@@ -5,6 +5,8 @@ import com.example.waa_final_project.Dto.AddPropertyDto;
 import com.example.waa_final_project.Dto.PropertyDto;
 import com.example.waa_final_project.Entity.Property;
 import com.example.waa_final_project.Service.PropertyService;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -68,5 +70,11 @@ public class PropertyController {
     @GetMapping("{id}/ownerEmail")
     public String getOwnerEmail(@PathVariable long id) {
         return  propertyService.getOwnerEmailByPropertyId(id);
+    }
+
+    @GetMapping("/pageination")
+    List<Property> getAllSortedByOwnerId(@RequestParam int pageNumber,@RequestParam int size){
+        Pageable pageableObj =  PageRequest.of(pageNumber, size);
+        return propertyService.findAllOrderByOwnerId(pageableObj);
     }
 }

@@ -12,6 +12,8 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -169,6 +171,11 @@ public class PropertyServiceImpl implements PropertyService {
     public String getOwnerEmailByPropertyId(long prop_id) {
         var user = usersRepo.findUsersByProperties_id(prop_id);
         return user.getEmail();
+    }
+
+    @Override
+    public List<Property> findAllOrderByOwnerId(Pageable pageable) {
+        return propertyRepo.findByOrderByOwnerId(pageable).getContent();
     }
 
 

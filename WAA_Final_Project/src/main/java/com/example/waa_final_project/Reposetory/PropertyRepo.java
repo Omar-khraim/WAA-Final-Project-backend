@@ -3,6 +3,8 @@ package com.example.waa_final_project.Reposetory;
 
 import com.example.waa_final_project.Entity.Property;
 import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -19,6 +21,10 @@ public interface PropertyRepo extends JpaRepository<Property, Long> {
     List<Property> findAllByLikes_Users_Id(long id);
 
     List<Property> findAllByOwner_Id(long id);
+
+    Page<Property> findByOrderByOwnerId(Pageable pageable);
+//    List<Property> findByOrderByOwnerIdDesc();
+
 
 
 

@@ -4,6 +4,7 @@ package com.example.waa_final_project.Service;
 import com.example.waa_final_project.Dto.AddPropertyDto;
 import com.example.waa_final_project.Dto.PropertyDto;
 import com.example.waa_final_project.Entity.Property;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -28,5 +29,6 @@ public interface PropertyService {
 
     String getOwnerEmailByPropertyId(long prop_id);
 
+    List<Property> findAllOrderByOwnerId(Pageable pageable);
 
 }
