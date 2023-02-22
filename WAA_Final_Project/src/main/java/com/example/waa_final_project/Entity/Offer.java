@@ -1,13 +1,12 @@
 package com.example.waa_final_project.Entity;
 
-import com.example.waa_final_project.Util.Enum.OfferStatus;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.redis.core.index.Indexed;
 
 @Data
 @NoArgsConstructor
@@ -16,6 +15,7 @@ import lombok.NoArgsConstructor;
 public class Offer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+            @Indexed
     long id;
 
     String offerType;
